@@ -1,6 +1,6 @@
 # DVD Rental Database -- Exploring data with SQL
 
-## **OBJECTIVE**: to show some of SQL capabilities.
+### **OBJECTIVE**: to show some of SQL capabilities.
 
 ## 📂 Files and schema:
 Database used for this demo is in a PostgreSQL ***dvdrental.tar*** file in the
