@@ -14,7 +14,7 @@ To easily follow along the ER diagram is shown here:
 ![A diagram of a computer Description automatically
 generated](./image1.png)
 
-## 💡 Understanding DVD rental data:**
+## 💡 Understanding DVD rental data:
 
 Table ***film*** keeps the data about all the films in the DVD rental
 store, while table **actor** has data about actors engaged in the
