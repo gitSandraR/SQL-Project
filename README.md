@@ -1,13 +1,12 @@
-# SQL Project:
- 
 # DVD Rental Database -- Exploring data with SQL
 
-## **Objective**: to show some of SQL capabilities.
+## **OBJECTIVE**: to show some of SQL capabilities.
 
-Database used for this demo is in a PostgreSQL dvdrental.tar file in the
+## 📂 Files and schema:
+Database used for this demo is in a PostgreSQL ***dvdrental.tar*** file in the
 repo.
 
-SQL queries are in .sql files, and result sets are in .csv files with
+SQL queries are in ***.sql*** files, and result sets are in ***.csv*** files with
 the same names as queries.
 
 To easily follow along the ER diagram is shown here:
@@ -15,7 +14,7 @@ To easily follow along the ER diagram is shown here:
 ![A diagram of a computer Description automatically
 generated](./image1.png)
 
-## **Understanding DVD rental data:**
+## 💡 Understanding DVD rental data:**
 
 Table ***film*** keeps the data about all the films in the DVD rental
 store, while table **actor** has data about actors engaged in the
@@ -44,9 +43,9 @@ yet. If the payment was made a corresponding transaction is kept. Of
 course, there are some rentals not paid yet (with a record in rentals
 and nothing in payment table).
 
-## Exploring data with SQL:
+## 🔍 Exploring data with SQL:
 
-**1\.** Let start with the query query that will answer the question: what
+🔷 **1\.** Let start with the query query that will answer the question: what
 are the top 15 cities that generate the most revenue (or the 15 bottom
 ones for example)?
 
@@ -75,7 +74,7 @@ Had the sorting been done in ascending order, we would have gotten the
 bottom 15 cities -- that is with the lowest revenue.
 
 
-**2\.** Here is the more basic query that shows the customers with overdue
+🔷 **2\.** Here is the more basic query that shows the customers with overdue
 items:
 
 ```sql
@@ -95,7 +94,7 @@ The EXTRACT function retrieves subfields such as year or hour from
 date/time values.
 
 
-**3\.** The following query shows the most popular movies in Canada. It
+🔷 **3\.** The following query shows the most popular movies in Canada. It
 demonstrates the use of subquery in WHERE clause. Usually operators IN
 or EXISTS are used to link outer and subquery:
 
@@ -140,7 +139,7 @@ title in descending order, and limited to first 20.
 The subquery further limits the result to only those titles that were
 rented to customers in Canada.
 
-**4.** The following query shows the use of GROUP BY and HAVING clause. It
+🔷 **4.** The following query shows the use of GROUP BY and HAVING clause. It
 gives us a list of all customers with less than 20 rentals:
 
 ```sql
@@ -158,7 +157,7 @@ To limit the result set to a smaller number of rows we use condition in
 WHERE clause. But with aggregate functions this condition is contained
 within HAVING (that is: HAVING goes together with GROUP BY).
 
-**5\.** This query shows a film category with the longest average duration.
+🔷 **5\.** This query shows a film category with the longest average duration.
 It demonstrates the use of CTE (Common Table Expression):
 
 ```sql
@@ -226,7 +225,7 @@ CTEs and create the final result. The main query can reference any of
 the defined CTEs. One CTE can reference other CTE (but only the one
 before it).
 
-**6\.** The next query shows a list of all documentaries with ratings
+🔷 **6\.** The next query shows a list of all documentaries with ratings
 explained. It shows a use case for CASE WHEN (multiple IF logic):
 
 ```sql
