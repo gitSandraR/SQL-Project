@@ -186,7 +186,7 @@ WITH
 --the next part combines the name of film category and its duration
 --(that is the maximum duration of all categories):
 SELECT avg_length_in_minutes AS "The longest average duration in minutes",
-       film_category AS \"Film category\"
+       film_category AS "Film category"
 FROM Aver_Cat
  INNER JOIN MaxVal ON Aver_Cat.avg_length_in_minutes = MaxVal.maxim;
 --WHERE avg_length_in_minutes = MaxVal.maxim
