@@ -198,16 +198,9 @@ Common Table Expression or CTE is a temporary named result set that can
 be referenced within a SELECT, INSERT, UPDATE, or DELETE statement.
 
 In the example above, first CTE (Aver_Cat) gives us a list of all film
-categories with an average film duration in minutes:
-
-![A screenshot of a computer Description automatically
-generated](./image2.png)
-
+categories with an average film duration in minutes.
 The second CTE (MaxVal) finds the maximal average duration. To do that
-it references the first CTE. The result is shown:
-
-![A screenshot of a computer Description automatically
-generated](./image3.png)
+it references the first CTE. Please refer to result sets.
 
 Finally, the third query (main query) merges two CTEs, and shows this
 maximal duration along with the name of corresponding category. The
@@ -248,3 +241,29 @@ WHERE c.name = 'Documentary'
 ORDER BY title;
 
 ```
+🔷 **7\.** This query shows all the movies with their duration compared to the average film duration within it's category. It shows the use of  window function.
+Unlike the aggregate function that groups the data and shows only one resulting row per grouping, with window function we can access all the details:
+```sql
+WITH
+		Aver_per_Category AS
+		(
+			SELECT AVG(f.length) OVER(PARTITION BY c.name) AS avg_length_per_category_in_minutes,
+                            c.name AS film_category,
+                            f.length, f.title
+			FROM film f
+				INNER JOIN film_category fc ON f.film_id = fc.film_id
+				INNER JOIN category c ON fc.category_id = c.category_id
+			ORDER BY c.name, f.title
+		)
+
+--main query: description added for readability
+--is movie longer or shorter than average duration in it's category:
+SELECT Aver_per_Category.*,
+		CASE
+			WHEN avg_length_per_category_in_minutes > length THEN 'Shorter than average in this category'
+			WHEN avg_length_per_category_in_minutes < length THEN 'Longer than average in this category'
+			ELSE 'Average length in this category'
+		END AS Longer_Shorter
+FROM Aver_per_Category;
+```
+Again, similar to qyery 🔷5, it uses CTE to extract all the necessary data (this time with details), and then in the main query it adds a description based on a condition within CASE/WHEN.
