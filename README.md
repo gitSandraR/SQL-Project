@@ -47,7 +47,8 @@ and nothing in payment table).
 
 🔷 **1\.** Let start with the query query that will answer the question: what
 are the top 15 cities that generate the most revenue (or the 15 bottom
-ones for example)?
+ones for example)? It shows the use of JOIN over several tables, and simple GROUP BY
+clause:
 
 ```sql
 
@@ -64,8 +65,7 @@ LIMIT 15;
 
 ```
 
-It shows the use of JOIN over several tables, and simple GROUP BY
-clause. Number of customers and total amount paid is grouped for every
+Number of customers and total amount paid is grouped for every
 city. Results are then sorted by total amount in descending order and
 limited to only 15 rows. This way the list shows the top 15 cities with
 the most revenue.
