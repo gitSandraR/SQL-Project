@@ -241,7 +241,7 @@ WHERE c.name = 'Documentary'
 ORDER BY title;
 
 ```
-🔷 **7\.** This query shows all the movies with their duration compared to the average film duration within it's category. It shows the use of  window function.
+🔷 **7\.** This query shows all the movies with their duration compared to the average film duration within their category. It shows the use of  window function.
 Unlike the aggregate function that groups the data and shows only one resulting row per grouping, with window function we can access all the details:
 ```sql
 WITH
