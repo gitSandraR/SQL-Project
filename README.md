@@ -209,7 +209,7 @@ result looks like this:
 ![A screenshot of a phone Description automatically
 generated](./image4.png)
 
-*Short note:* CTE begins with the word **WITH** than the name of CTE and
+***Short note:*** CTE begins with the word **WITH** than the name of CTE and
 then the word **AS**. After that the SQL query that defines CTE is put
 in brackets. If there is more than one CTE, the word WITH goes only once
 at the beginning, and multiple CTEs are separated with comma. At the end
@@ -241,7 +241,7 @@ WHERE c.name = 'Documentary'
 ORDER BY title;
 
 ```
-🔷 **7\.** This query shows all the movies with their duration compared to the average film duration within their category. It shows the use of  window function.
+🔷 **7\.** This query shows all the movies with their duration compared to the average film duration within their category. It shows the use of window function.
 Unlike the aggregate function that groups the data and shows only one resulting row per grouping, with window function we can access all the details:
 ```sql
 WITH
@@ -249,7 +249,8 @@ WITH
 		(
 			SELECT AVG(f.length) OVER(PARTITION BY c.name) AS avg_length_per_category_in_minutes,
                             c.name AS film_category,
-                            f.length, f.title
+                            f.length,
+			    f.title
 			FROM film f
 				INNER JOIN film_category fc ON f.film_id = fc.film_id
 				INNER JOIN category c ON fc.category_id = c.category_id
@@ -266,4 +267,6 @@ SELECT Aver_per_Category.*,
 		END AS Longer_Shorter
 FROM Aver_per_Category;
 ```
-Again, similar to qyery 🔷5, it uses CTE to extract all the necessary data (this time with details), and then in the main query it adds a description based on a condition within CASE/WHEN.
+Again, similar to qyery 🔷5, it uses CTE to extract all the necessary data (this time with details about every single film), and then in the main query it adds a description based on a condition within CASE/WHEN. **PARTITION BY** plays the similar role as **GROUP BY** (it groups data by whatever column or columns are specified within it), but the result is shown for every individual row like no grouping was done.
+
+***Short note on 'SELECT \*' or 'SELECT Table.\*':***  It is generally bad practice to use *'SELECT \*'* or *'SELECT Table.\*'* especially if the results will be used as part of a report that runs on a schedule, because if the table schema changes in the future we might end up with the data not needed in the report. Instead we should use *'SELECT field1, field2, ...., fieldn'* - this way we control what is in the report. In the example above however, *'SELECT Aver_per_Category.\*'* is OK since **we** defined *Aver_per_Category*, and it always has only 4 columns.
